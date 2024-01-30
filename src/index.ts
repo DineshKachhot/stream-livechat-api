@@ -9,6 +9,8 @@ const { PORT, STREAM_API_KEY, STREAM_API_SECRET } = process.env;
 
 const client = StreamChat.getInstance(STREAM_API_KEY!, STREAM_API_SECRET);
 
+console.log('STREAM_API_KEY:- ', STREAM_API_KEY, STREAM_API_SECRET)
+
 const app = express();
 app.use(express.json());
 const salt = genSaltSync(10);
