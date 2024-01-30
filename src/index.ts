@@ -40,12 +40,13 @@ app.post("/register", async (req, res) => {
     try {
         const hashedPassword = hashSync(password, salt);
         const id = Math.random().toString(16).slice(2);
-
+        console.log("hashedPassword:- ", hashedPassword)
         const user = {
             id,
             email,
             hashed_password: hashedPassword
         }
+        console.log("user:- ", user)
         USERS.push(user)
 
         await client.upsertUser({
@@ -53,9 +54,9 @@ app.post("/register", async (req, res) => {
             name: email,
             email,
         })        
-
+        console.log('user upserted')
         const token = client.createToken(id);
-
+        console.log("token:- ", token)
         return res.status(200).json({ user: {id, email}, token });
     } catch (error) {
         res.status(500).json({ error });
