@@ -59,6 +59,7 @@ app.post("/register", async (req, res) => {
         console.log("token:- ", token)
         return res.status(200).json({ user: {id, email}, token });
     } catch (error) {
+        console.log('error:- ', error)
         res.status(500).json({ error });
     }
 })
